@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="locationfinder">
+    <h1>Find offices in your area.</h1>
+
+    <form v-on="submit: findOffices">
+
+        <div class="form-group">
+            <label for="location">Show offices in the neighborhood of:</label>
+            <input type="location" class="form-control" id="location" placeholder="Location" v-model="search.location">
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" v-model="search.weekends"> Show only open in weekends
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" v-model="search.support"> Show only with support desk
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" v-model="search.strict"> Strict mode
+            </label>
+        </div>
+        <button type="find" class="btn btn-success btn-lg btn-block">Submit</button>
+    </form>
+
+    <table class="table table-striped" v-if="offices">
+        <thead>
+            <tr>
+                <th>Street</th>
+                <th>City</th>
+                <th>Open in weekends</th>
+                <th>Has a support desk</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-repeat="offices">
+                <td scope="row">{{ '{{street | lowercase | capitalize}}' }}</td>
+                <td>{{"{{city | lowercase | capitalize}}"}}</td>
+                <td><span class='glyphicon {{"{{is_open_in_weekends}}"}}' aria-hidden="true"></span></td>
+                <td><span class='glyphicon {{"{{has_support_desk}}"}}' aria-hidden="true"></span></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
