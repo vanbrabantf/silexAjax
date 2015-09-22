@@ -1,5 +1,13 @@
-# silexAjax
+# SilexAjax
 A small Silex example that does some AJAX an API calls.
 There's some Vue.js in there too.
 
-Lacks some Tests.
+# Used technologies:
+
+* Silex
+* Eloquent ORM
+* Twig
+* Vue.js
+* Twitter Bootstrap
+
+TODO : Implement some extra tests
