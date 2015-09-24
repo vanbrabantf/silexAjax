@@ -31,7 +31,12 @@ class SearchController
     public function findAction(Request $request)
     {
         $search = $request->request->all();
-        $offices = $this->officeRepository->getOfficesByLocation($search['location'], $search['weekends'], $search['support'], $search['strict']);
+        $offices = $this->officeRepository->getOfficesByLocation(
+            $search['location'],
+            $search['weekends'],
+            $search['support'],
+            $search['strict']
+        );
 
         return $offices;
     }

@@ -27,15 +27,15 @@ class EloquentOfficeRepository implements OfficeRepositoryInterface
     {
         $offices = Office::query();
 
-        if(filter_var($openInWeekends, FILTER_VALIDATE_BOOLEAN)) {
+        if (filter_var($openInWeekends, FILTER_VALIDATE_BOOLEAN)) {
             $offices->where('is_open_in_weekends', '=', 'Y');
         }
 
-        if(filter_var($hasSupportDesk, FILTER_VALIDATE_BOOLEAN)) {
+        if (filter_var($hasSupportDesk, FILTER_VALIDATE_BOOLEAN)) {
             $offices->where('has_support_desk', '=', 'Y');
         }
 
-        if(! filter_var($strict, FILTER_VALIDATE_BOOLEAN)) {
+        if (! filter_var($strict, FILTER_VALIDATE_BOOLEAN)) {
             $bounds = $this->geocoder->geocode($city)->first()->getBounds();
 
             $offices->where('latitude', '<', $bounds->getNorth());
